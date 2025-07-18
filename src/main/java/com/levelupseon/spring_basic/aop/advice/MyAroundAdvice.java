@@ -1,11 +1,11 @@
-package com.levelupseon.spring_basic.aop;
+package com.levelupseon.spring_basic.aop.advice;
 
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoggingAdvice implements MethodInterceptor {
+public class MyAroundAdvice implements MethodInterceptor {
   //invoke
   @Override
   public Object invoke(MethodInvocation invocation) throws Throwable{
