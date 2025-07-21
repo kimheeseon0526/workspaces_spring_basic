@@ -1,30 +1,34 @@
 package com.levelupseon.spring_basic.domain;
 
+import jakarta.persistence.*;
 import jdk.jshell.Snippet;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Data
-//@Component
+import java.util.List;
+
+
+@Component
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
+@Table(name = "tbl_member") //테이블명
+@Getter
+@Setter
+@ToString(exclude = "boards")
 public class Member {
-//  @Value("gae-ddong")
+  @Id // pk
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long no;
   private String name;
-//  @Value("32")
+  private String id;
+  private String pw;
   private int age;
 
-  private String id;
-
-  public Member(String s, int i) {
-    this.name = s;
-    this.age = i;
-  }
-
+  @OneToMany(mappedBy = "member")
+  private List<Board> boards;
 }

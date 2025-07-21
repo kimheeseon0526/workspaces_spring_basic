@@ -12,8 +12,7 @@ import org.springframework.stereotype.Service;
 @ToString
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
-  @NonNull
-  private  Member member;
+
   
   //생성자 정의 및 주입 ->유일한 생성자의 경우 @Autowired 없어도 됨
 

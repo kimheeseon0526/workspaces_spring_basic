@@ -4,3 +4,8 @@ spring:
       - optional:classpath:./secret/db.yml
   application:
     name: spring_basic
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
