@@ -1,11 +1,15 @@
 package com.levelupseon.spring_basic.repository;
 
 import com.levelupseon.spring_basic.domain.Member;
+import com.levelupseon.spring_basic.entity.Memo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberRepositoryTest {
   @Autowired
   MemberRepository memberRepository;
+  @Autowired
+  private MemoRepository memoRepository;
 
   @Test
   public void testExist() {
@@ -56,4 +62,22 @@ public class MemberRepositoryTest {
   public void testDelete() {
     memberRepository.deleteById(2L);
   }
+
+  @Test
+  public void testQueryMethod() {
+    memoRepository.findByMnoBetweenOrderByMnoDesc(70L, 80L).forEach( m -> log.info("{}", m));
+  }
+  @Test
+  public void testQueryMethod2() {
+    Page<Memo> memos = memoRepository
+            .findByMnoBetween(10L, 50L, PageRequest.of(0, 10, Sort.Direction.DESC, "mno"));
+    memos.forEach( m ->log.info("{}", m));
+  }
+  //memo의 총 갯수를 로깅하게끔
+  @Test
+  public void testCount() {
+    log.info("{}", memoRepository.countByMno(1L));
+  }
+
+  //Mno가 특정 long이고 memoText가 특정 문자열일 때의 query method
 }
