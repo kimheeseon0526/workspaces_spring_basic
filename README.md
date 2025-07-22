@@ -9,7 +9,7 @@
 - 페이징/정렬 처리
 - @Query 어노테이션
 - Thymeleaf 객체
-###- https://docs.spring.io/spring-data/jpa/reference/repositories/query-by-example.html
+- https://docs.spring.io/spring-data/jpa/reference/repositories/query-by-example.html
 
 
 
